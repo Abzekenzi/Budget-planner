@@ -1,3 +1,4 @@
+#Function of getting input
 def get_input():
     print("Введите сумму денег")
     sum = float(input())
@@ -5,6 +6,7 @@ def get_input():
     days_left = int(input())
     return [sum, days_left]
 
+#Function of file reading
 def readfile(filename):
     f = open('meal_menu/' + filename, 'r')
     list = {}
@@ -14,6 +16,7 @@ def readfile(filename):
     f.close()
     return list
 
+#Function of choosing the method to apply
 def validate(sum):
     coffee = readfile('coffee')
     drinks = readfile('drinks')
@@ -26,13 +29,11 @@ def validate(sum):
 
     if sum < min_price:
         return 0
-    if sum >= min_price and
+    #if sum >= min_price and
 
-
+#Start of the program
 print("Здравтсвуйте! Пожалуйста, ответьте на следующие вопросы")
 input_res = get_input()
-
 sum_per_consuption = input_res[0] / (input_res[1] * 2)
-validation_code = validate(sum_per_consuption)
-if validation_code == 0:
+if validate(sum_per_consuption) == 0:
     print("К сожалению, мы не можем Вам предложить план питания: недостаточно денег")
