@@ -1,3 +1,12 @@
+import unittest
+
+class TestMethods(unittest.TestCase):
+    def test_validate(self):
+        self.assertEqual(validate(50), 0)
+
+if __name__ == '__main__':
+    unittest.main()
+
 #Function of getting input
 def get_input():
     print("Введите сумму денег")
