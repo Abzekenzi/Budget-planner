@@ -25,12 +25,14 @@ def validate(sum):
     max_price_main = float(max(main.values()))
     max_price_soups = float(max(soups.values()))
 
-    if sum < min_price_main + min_price_soups:
+    if sum < min_price_main:
         return 0
-    if (sum >= min_price_main + min_price_soups) and (sum < max_price_main + max_price_soups):
+    if sum >= min_price_main and sum < max_price_main
         return 1
-    if sum >= max_price_main + min_price_soups:
+    if (sum >= min_price_main + min_price_soups) and (sum < max_price_main + max_price_soups):
         return 2
+    if sum >= max_price_main + max_price_soups:
+        return 3
 
 def get_minimal_meal(data):
     min_key = ""
@@ -45,7 +47,7 @@ def get_minimal_meal(data):
     return [min_key, min]
 
 
-def start_providing(mode):
+def start_providing(mode, sum_per_consumption):
     if mode != 1 and mode != 2:
         return -1
 
@@ -63,6 +65,12 @@ def start_providing(mode):
         tmp_meal = get_minimal_meal(soups)
         resulting_menu[tmp_meal[0]] = tmp_meal[1]
         return resulting_menu
+    elif mode == 2:
+        print("Выберите суп из меню")
+        print(soups.keys())
+        choice_soup = int(input())
+        print(choice_soup)
+
 
 #Start of the program
 print("Здравтсвуйте! Пожалуйста, ответьте на следующие вопросы")
@@ -73,11 +81,13 @@ if val == 0:
     print("К сожалению, мы не можем Вам предложить план питания: недостаточно денег")
     exit()
 elif val == 1:
-    print("К сумме, указанной Вами, предлагаем следующий вариант")
+    print("К сумме, указанной Вами, можем предложить основные блюда")
 elif val == 2:
-    print("Выберите из предложенных вариантов")
+    print("К сумме, указанной Вами, можем предложить основные блюда и супы")
+elif val == 3:
+    print("Выберите меню из предложенных")
 
-menu = start_providing(val)
+menu = start_providing(val, sum_per_consuption)
 if menu == -1:
     print("Bad option")
     exit()
